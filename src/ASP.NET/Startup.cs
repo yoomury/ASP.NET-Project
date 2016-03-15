@@ -20,12 +20,23 @@ namespace ASP.NET
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
-            app.UseIISPlatformHandler();
+//            app.UseIISPlatformHandler();
 
-            app.Run(async (context) =>
+           /* app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
-            });
+                var html = @"<!DOCTYPE html>
+                        <html>
+                        <head>
+                        </head>
+                        <body>
+                            <h2>HelloWorld</h2>
+                        </body>
+                        </html>";
+                           
+                await context.Response.WriteAsync(html);
+            });*/
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
 
         // Entry point for the application.
