@@ -1,34 +1,69 @@
-[jQuery](http://jquery.com/) — New Wave JavaScript
-==================================================
+# jQuery
 
-Contribution Guides
---------------------------------------
+> jQuery is a fast, small, and feature-rich JavaScript library.
 
-In the spirit of open source software development, jQuery always encourages community code contribution. To help you get started and before you jump into writing code, be sure to read these important contribution guidelines thoroughly:
+For information on how to get started and how to use jQuery, please see [jQuery's documentation](http://api.jquery.com/).
+For source files and issues, please visit the [jQuery repo](https://github.com/jquery/jquery).
 
-1. [Getting Involved](http://contribute.jquery.org/)
-2. [Core Style Guide](http://contribute.jquery.org/style-guide/js/)
-3. [Writing Code for jQuery Foundation Projects](http://contribute.jquery.org/code/)
+## Including jQuery
 
+Below are some of the most common ways to include jQuery.
 
-Environments in which to use jQuery
---------------------------------------
+### Browser
 
-- [Browser support](http://jquery.com/browser-support/) differs between the master branch and the 1.x branch. Specifically, the master branch does not support legacy browsers such as IE6-8. The jQuery team continues to provide support for legacy browsers on the 1.x branch. Use the latest 1.x release if support for those browsers is required. See [browser support](http://jquery.com/browser-support/) for more info.
-- To use jQuery in Node, browser extensions, and other non-browser environments, use only master branch releases (2.x). The 1.x branch does not support these environments.
+#### Script tag
 
+```html
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+```
 
-What you need to build your own jQuery
---------------------------------------
+#### Babel
 
-In order to build jQuery, you need to have the latest Node.js/npm and git 1.7 or later. Earlier versions might work, but are not supported.
+[Babel](http://babeljs.io/) is a next generation JavaScript compiler. One of the features is the ability to use ES6/ES2015 modules now, even though browsers do not yet support this feature natively.
 
-For Windows, you have to download and install [git](http://git-scm.com/downloads) and [Node.js](http://nodejs.org/download/).
+```js
+import $ from "jquery";
+```
 
-OS X users should install [Homebrew](http://brew.sh/). Once Homebrew is installed, run `brew install git` to install git,
-and `brew install node` to install Node.js.
+#### Browserify/Webpack
 
-Linux/BSD users should use their appropriate package managers to install git and Node.js, or build from source
+There are several ways to use [Browserify](http://browserify.org/) and [Webpack](https://webpack.github.io/). For more information on using these tools, please refer to the corresponding project's documention. In the script, including jQuery will usually look like this...
+
+```js
+var $ = require("jquery");
+```
+
+#### AMD (Asynchronous Module Definition)
+
+AMD is a module format built for the browser. For more information, we recommend [require.js' documentation](http://requirejs.org/docs/whyamd.html).
+
+```js
+define(["jquery"], function($) {
+
+});
+```
+
+### Node
+
+To include jQuery in [Node](nodejs.org), first install with npm.
+
+```sh
+npm install jquery
+```
+
+For jQuery to work in Node, a window with a document is required. Since no such window exists natively in Node, one can be mocked by tools such as [jsdom](https://github.com/tmpvar/jsdom). This can be useful for testing purposes.
+
+```js
+require("jsdom").env("", function(err, window) {
+	if (err) {
+		console.error(err);
+		return;
+	}
+
+	var $ = require("jquery")(window);
+});
+```
+ux/BSD users should use their appropriate package managers to install git and Node.js, or build from source
 if you swing that way. Easy-peasy.
 
 

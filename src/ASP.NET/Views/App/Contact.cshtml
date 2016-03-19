@@ -4,8 +4,8 @@
     ViewBag.Title = "Contact";
 }
 @section Scripts{
-    <script src="script"></script>
-    <script src="script2"></script>
+    <script src="~/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/bower_components/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
 <h2>Contact</h2>
 <form method="POST">
@@ -13,7 +13,7 @@
     {
         <div>@ViewBag.Message</div>
     }
-    <div asp-validation-summary="Validation.Summary.ModelOnly"></div>
+    <div asp-validation-summary="ValidationSummary.ModelOnly"></div>
     <label asp-for="Name">Name</label>
     <input asp-for="Name"/>
     <span asp-validation-for="Name"></span>
